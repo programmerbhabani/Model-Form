@@ -1,0 +1,65 @@
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+    <head>
+       <link rel="stylesheet" href="{% static 'css/sample.css' %}">
+    </head>
+    <body><br>
+      <table align="center">
+          <tr>
+              <th>
+                  <form action="{% url 'Home' %}" method="post">
+                      {% csrf_token %}
+                      <table align="center" border="0" width="400">
+                          <tr><th class="sub-title" colspan="2">Student Registration Form</th></tr>
+                          <Tr>
+                              <th >{{ form }}</th>
+                          </Tr>
+                          <tr>
+                              <Th style="text-align: center;padding: 8px" colspan="2"><button type="submit">Submit</button></Th>
+                          </tr>
+                          <tr><th class="sub-title" colspan="2">
+                              {% for message in messages%}
+                                  {{ message }}
+                              {% endfor %}
+                          </th></tr>
+                      </table>
+                  </form>
+              </th>
+              <th colspan="5" style="padding: 40px">
+                  <table align="center" border="0" width="1000">
+                      <tr><th class="sub-title" colspan="5">Show Student Information</th></tr>
+                      <tr>
+                          <th class="one">Idno</th>
+                          <th class="one">Name</th>
+                          <th class="one">Email</th>
+                          <th class="one">Password</th>
+                          <th class="one" width="200">Action</th>
+                      </tr>
+                      {% if student_data %}
+                          {% for x in student_data %}
+                              <tr>
+                                 <th>{{ x.id }}</th>
+                                 <th>{{ x.name }}</th>
+                                 <th>{{ x.email }}</th>
+                                 <th>{{ x.password }}</th>
+                                 <th>
+                                     <a href="{% url 'update_data' x.id %}">
+                                         <button type="submit">Update</button>
+                                     </a>
+                                     <form action="{% url 'delete_data' x.id %}" method="post">
+                                         {% csrf_token %}
+                                         <button type="submit">Delete</button>
+                                     </form>
+                                 </th>
+                              </tr>
+                          {% endfor %}
+                      {% else %}
+                                  <h1>No Data Avaliable</h1>
+                      {% endif %}
+                  </table>
+              </th>
+          </tr>
+      </table>
+    </body>
+{% endblock %}

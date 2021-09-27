@@ -1,0 +1,22 @@
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+    <body>
+       <form action="" method="post">
+           {% csrf_token %}
+           <table align="center">
+              <tr>
+                  <th class="sub-title" colspan="2">Update_Information</th>
+              </tr>
+               <tr>
+                   <th>{{ data }}</th>
+               </tr>
+               <tr>
+                   <Th colspan="2"><button type="submit">Save</button></Th>
+
+               </tr>
+           </table>
+       </form>
+    </body>
+    <a href="{% url 'Home' %}">Back</a>
+{% endblock %}

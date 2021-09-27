@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+  <head>
+      <link rel="stylesheet" href="{% static 'css/sample.css' %}">
+  </head>
+  <body>
+     <table align="center" border="2" width="1500">
+         <tr>
+             <th class="title"> Function Based View ModelForm CURD Project</th>
+         </tr>
+         <tr>
+             <th>
+                 {% block common %}
+
+                 {% endblock %}
+             </th>
+         </tr>
+     </table>
+  </body>
+</html>
